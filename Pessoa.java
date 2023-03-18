@@ -1,12 +1,15 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class Pessoa {
     private String nome;
     private String cpf;
-    private String dataNascimento;
+    private LocalDate dataNascimento;
 
     public Pessoa(String nome, String cpf, String dataNascimento) {
         this.nome = nome;
         this.cpf = cpf;
-        this.dataNascimento = dataNascimento;
+        this.dataNascimento = LocalDate.parse(dataNascimento, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
 
     public String getNome() {
@@ -25,33 +28,21 @@ public class Pessoa {
         this.cpf = cpf;
     }
 
-    public String getDataNascimento() {
+    public LocalDate getDataNascimento() {
         return dataNascimento;
     }
 
     public void setDataNascimento(String dataNascimento) {
-        this.dataNascimento = dataNascimento;
+        this.dataNascimento = LocalDate.parse(dataNascimento, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
 
- 
+    @Override
     public String toString() {
-        return "Pessoa{" +
-                "nome='" + nome + '\'' +
-                ", cpf='" + cpf + '\'' +
-                ", dataNascimento='" + dataNascimento + '\'' +
-                '}';
-    }
-    
-    public static void main(String[] args) {
-        // Exemplo de uso da classe Pessoa
-        Pessoa pessoa = new Pessoa("João Silva", "123.456.789-00", "01/01/2000");
-        System.out.println(pessoa.toString());
-        // Saída: Pessoa{nome='João Silva', cpf='123.456.789-00', dataNascimento='01/01/2000'}
-        
-        pessoa.setCpf("987.654.321-00");
-        pessoa.setDataNascimento("02/02/2002");
-        System.out.println(pessoa.toString());
-        // Saída: Pessoa{nome='João Silva', cpf='987.654.321-00', dataNascimento='02/02/2002'}
+        return "Nome: " + nome + "\nCPF: " + cpf + "\nData de Nascimento: " +
+                dataNascimento.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
 }
 
+
+    
+    
